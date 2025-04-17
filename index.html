@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Gallery with jQuery Filters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    .gallery img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  .filter-btns {
+    text-align: center;
+    margin: 30px 0 20px;
+  }
+
+  .filter-btns button {
+    margin: 5px;
+  }
+
+  .filter-item {
+    display: none;
+}
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="text-center mt-4">Image Gallery with Filters</h2>
+
+  <div class="filter-btns">
+    <button class="btn btn-primary filter" data-filter="all">All</button>
+    <button class="btn btn-secondary filter" data-filter="nature">Nature</button>
+    <button class="btn btn-success filter" data-filter="animals">Animals</button>
+    <button class="btn btn-warning filter" data-filter="city">City</button>
+  </div>
+
+  <div class="row gallery">
+    <div class="col-md-4 mb-4 filter-item nature">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvR1h4YOwBNiCeeZ-vd-Mg4GA2orpo95umaQ&s" alt="Nature 1">
+    </div>
+    <div class="col-md-4 mb-4 filter-item city">
+      <img src="https://www.shutterstock.com/image-photo/stunning-view-new-york-city-600nw-2500167587.jpg" alt="City 1">
+    </div>
+    <div class="col-md-4 mb-4 filter-item animals">
+      <img src="https://images.ctfassets.net/hrltx12pl8hq/1D85eAdM0IhXrEYsoOt7Ut/107424ea3e7e10ab3203446dae175cf7/3_jungle_animals.webp" alt="Animal 1">
+    </div>
+    <div class="col-md-4 mb-4 filter-item nature">
+      <img src="https://assets.weforum.org/article/image/responsive_large_0ZUBmNNVLRCfn3NdU55nQ00UF64m2ObtcDS0grx02fA.jpg" alt="Nature 2">
+    </div>
+    <div class="col-md-4 mb-4 filter-item city">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh73Vd1HRtk6R1cTErriyl0p_tiLx0nATMtw&s" alt="City 2">
+    </div>
+    <div class="col-md-4 mb-4 filter-item animals">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/A_chital_stag_1.JPG/1200px-A_chital_stag_1.JPG" alt="Animal 2">
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+    $(".filter-item").fadeIn();
+
+    $(".filter").on("click", function () {
+      const category = $(this).data("filter");
+
+      if (category === "all") {
+        $(".filter-item").fadeOut(100, function () {
+          $(".filter-item").fadeIn(300);
+        });
+      } else {
+        $(".filter-item").fadeOut(100, function () {
+          $(".filter-item." + category).fadeIn(300);
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
